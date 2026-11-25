@@ -1,28 +1,26 @@
 import pg from "pg";
 import { env } from "../config/env.ts";
 
-
 const { Pool } = pg;
 
 export const pool = new Pool({
-    connectionString: env.DATABASE_URL,
+  connectionString: env.DATABASE_URL,
 
-    // max connections in the pool
+  // Supabase requires TLS on the pooler endpoint.
+  ssl: {
+    rejectUnauthorized: false,
+  },
 
-    max: 20,
+  // Keep the pool small for our API's current development workload.
+  max: 5,
 
-    // close idle clients after 30 seconds
-    idleTimeoutMillis: 30_000,
+  // Close idle connections after 30 seconds.
+  idleTimeoutMillis: 30_000,
 
-    // fail if a connection cannot be established within 2 seconds
+  // Give a connection 10 seconds to establish.
+  connectionTimeoutMillis: 10_000,
+});
 
-    connectionTimeoutMillis: 5_000,
-
-    // listen for unexpected errors on idle clients
-
-
-})
-pool.on("error", (err, client) => {
-    console.error("Unexpected error on idle client", err);
-    process.exit(-1);
-})
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle client", err);
+});
