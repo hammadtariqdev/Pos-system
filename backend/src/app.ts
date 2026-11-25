@@ -1,9 +1,12 @@
-
+import authRoutes from "./modules/auth/auth.routes.ts";
 import express from "express";
 import errorHandler from "./middlewares/error-handler";
 import notFound from "./middlewares/not-found";
-const app = express();
+import businessRoutes from "./modules/business/business.routes.ts";
 import { sendSuccess } from "./utils/api-response.js";
+import productRoutes from "./modules/products/products.routes.ts";
+const app = express();
+
 // Middleware
 app.use(express.json());
 
@@ -12,12 +15,15 @@ app.get("/api/health", (_req, res) => {
   return sendSuccess(res, {
     message: "Sitara Bills API is running",
     data: {
-      uptime: process.uptime()
-    }
+      uptime: process.uptime(),
+    },
   });
 });
 
-
+// routes
+app.use("/api/auth", authRoutes);
+app.use("/api/business", businessRoutes);
+app.use("/api/products", productRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
