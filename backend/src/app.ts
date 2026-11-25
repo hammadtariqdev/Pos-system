@@ -5,6 +5,7 @@ import notFound from "./middlewares/not-found";
 import businessRoutes from "./modules/business/business.routes.ts";
 import { sendSuccess } from "./utils/api-response.js";
 import productRoutes from "./modules/products/products.routes.ts";
+import categoryRoutes from "./modules/categories/categories.routes.ts";
 const app = express();
 
 // Middleware
@@ -24,6 +25,7 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/business", businessRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
