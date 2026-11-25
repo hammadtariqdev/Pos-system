@@ -10,10 +10,13 @@
     "start": "bun run dist/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "db:check": "bun run scripts/check-dbc.ts"
+    "db:check": "bun run scripts/check-db.ts",
+    "db:seed:owner": "bun run scripts/seed-owner.ts"
   },
   "dependencies": {
     "@supabase/server": "^1.9.2",
+    "argon2": "^0.45.2",
+    "dotenv": "^18.0.10",
     "express": "^5.3.0",
     "pg": "^8.23.1",
     "zod": "^4.6.7"
