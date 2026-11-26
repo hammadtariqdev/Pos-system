@@ -1,6 +1,5 @@
 
 import {
-  afterAll,
   afterEach,
   describe,
   expect,
@@ -81,10 +80,6 @@ describe("PostgresProductRepository", () => {
     );
 
     createdTenantIds = [];
-  });
-
-  afterAll(async () => {
-    await pool.end();
   });
 
   it("creates a product with pricing, packaging, and QR identifiers", async () => {

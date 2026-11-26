@@ -1,6 +1,5 @@
 
 import {
-  afterAll,
   afterEach,
   beforeEach,
   describe,
@@ -32,10 +31,6 @@ describe("PostgresBusinessRepository", () => {
       `,
       [createdBusinessIds],
     );
-  });
-
-  afterAll(async () => {
-    await pool.end();
   });
 
   it("creates a business", async () => {

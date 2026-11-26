@@ -1,5 +1,4 @@
 import {
-  afterAll,
   afterEach,
   describe,
   expect,
@@ -89,10 +88,6 @@ describe("PostgresSessionRepository", () => {
     );
 
     createdTenantIds = [];
-  });
-
-  afterAll(async () => {
-    await pool.end();
   });
 
   it("creates a session", async () => {

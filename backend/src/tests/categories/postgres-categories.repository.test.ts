@@ -1,6 +1,5 @@
 
 import {
-  afterAll,
   afterEach,
   describe,
   expect,
@@ -60,10 +59,6 @@ describe("PostgresCategoryRepository", () => {
     );
 
     createdTenantIds = [];
-  });
-
-  afterAll(async () => {
-    await pool.end();
   });
 
   it("creates a category", async () => {
