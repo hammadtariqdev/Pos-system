@@ -7,6 +7,8 @@ import { sendSuccess } from "./utils/api-response.js";
 import productRoutes from "./modules/products/products.routes.ts";
 import categoryRoutes from "./modules/categories/categories.routes.ts";
 import vendorRoutes from "./modules/vendors/vendors.routes.ts";
+import { inventoryRouter } from "./modules/inventory/inventory.routes";
+import { salesRouter } from "./modules/sales/sales.routes";
 // express app instance
 const app = express();
 
@@ -29,6 +31,8 @@ app.use("/api/business", businessRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/vendors", vendorRoutes);
+app.use("/api/v1/sales", salesRouter);
+app.use("/api/v1/inventory", inventoryRouter);
 app.use(notFound);
 app.use(errorHandler);
 
